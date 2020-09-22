@@ -1,6 +1,6 @@
 
 
-namespace NUnitCabInvoiceTest
+ namespace NUnitCabInvoiceTest
 {
     using CabInvoiceProjects;
     using NUnit.Framework;
@@ -30,6 +30,17 @@ namespace NUnitCabInvoiceTest
             double fare = cabInvoice.CalculateFare(distance, time);
             Assert.AreEqual(5.0, fare);
 
+        }
+
+        [Test]
+        public void Given_Multiple_Rides_should_Return_Total_fare()
+        {
+            CabInvoiceMain cabInvoice = new CabInvoiceMain();
+            Ride[] rides = { new Ride(2.0, 5),
+                            new Ride(0.1, 1)
+                           };
+            double fare = cabInvoice.CalculateFare(rides);
+            Assert.AreEqual(30.0, fare);
         }
 
     }
