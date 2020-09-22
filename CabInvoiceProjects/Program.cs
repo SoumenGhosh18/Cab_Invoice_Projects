@@ -7,7 +7,7 @@ namespace CabInvoiceProjects
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.WriteLine("Welcome to cab invoice projects");
         }
     }
 }
