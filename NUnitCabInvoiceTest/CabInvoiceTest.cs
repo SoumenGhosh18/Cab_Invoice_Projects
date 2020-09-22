@@ -31,7 +31,7 @@
             Assert.AreEqual(5.0, fare);
 
         }
-
+/*
         [Test]
         public void Given_Multiple_Rides_should_Return_Total_fare()
         {
@@ -41,6 +41,18 @@
                            };
             double fare = cabInvoice.CalculateFare(rides);
             Assert.AreEqual(30.0, fare);
+        }
+*/
+        [Test]
+        public void Given_Multiple_Rides_should_Return_Invoice_Summary()
+        {
+            CabInvoiceMain cabInvoice = new CabInvoiceMain();
+            Ride[] rides = { new Ride(2.0, 5),
+                            new Ride(0.1, 1)
+                           };
+            InvoiceSumarry summary = cabInvoice.CalculateFare(rides);
+            InvoiceSumarry expectedInvoiceSumarry = new InvoiceSumarry(2, 30);
+            Assert.AreEqual(expectedInvoiceSumarry, summary);
         }
 
     }

@@ -18,14 +18,14 @@ namespace CabInvoiceProjects
             return totalFare;
         }
 
-        public double CalculateFare(Ride[] rides)
+        public InvoiceSumarry CalculateFare(Ride[] rides)
         {
             double totalFare = 0;
             foreach(Ride ride in rides)
                 {
                 totalFare  = totalFare+ this.CalculateFare(ride.distance, ride.time);
             }
-            return totalFare;
+            return new InvoiceSumarry(rides.Length, totalFare);
         }
     }
 }
