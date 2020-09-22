@@ -7,11 +7,15 @@ namespace CabInvoiceProjects
 
     public class CabInvoiceMain
     {
-        public double MinCostPerKm=10;
-        public int CostPerTime=1;
+        public double MIN_COST_PER_KM=10;
+        public int COST_PER_TIME=1;
+        public int MIN_FARE =5;
         public double CalculateFare(double distance, int time)
         {
-            return distance*MinCostPerKm + time*CostPerTime;
+            double totalFare= distance* MIN_COST_PER_KM + time* COST_PER_TIME;
+            if (totalFare < MIN_FARE)
+                return MIN_FARE;
+            return totalFare;
         }
     }
 }
