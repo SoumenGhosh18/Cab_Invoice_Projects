@@ -6,16 +6,14 @@ namespace CabInvoiceProjects
 {
     public class InvoiceGenerator
     {
-        private static int costPerTime = 1;
-        private static double minimumCostPerKilometer = 10;
-        private static double minimumFare = 5;
-
-        public double CalculateFare(double distance, int time)
+        
+        public double CalculateFare(double distance, int time, string type)
         {
-            double totalFare = distance * minimumCostPerKilometer + time * costPerTime;
-            if (totalFare < minimumFare)
+            RideType rideType = new RideType(type);
+            double totalFare = distance * rideType.minimumCostPerKilometer + time * rideType.costPerTime;
+            if (totalFare < rideType.minimumFare)
             {
-                return minimumFare;
+                return rideType.minimumFare;
             }
             return totalFare;
         }
@@ -31,7 +29,7 @@ namespace CabInvoiceProjects
 
                 foreach (Rides ride in RideRepository.account[userId])
                 {
-                    totalFare += this.CalculateFare(ride.distance, ride.time);
+                    totalFare += this.CalculateFare(ride.distance, ride.time, ride.rideType);
                     numberOfRides++;
                 }
 
@@ -40,6 +38,7 @@ namespace CabInvoiceProjects
             invoiceSummary.TotalFare = totalFare;
             invoiceSummary.CalculateAvergaeFare();
             return invoiceSummary;
+
         }
     }
 }
